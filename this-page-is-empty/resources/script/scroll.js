@@ -17,4 +17,16 @@ function makeContainersVisible() {
     });
 }
 
-/* Great! We started with some basic stuff, we have the function that makes the containers apear and disapear, now we have to make the eyes, make them appear as we scroll, make the pupils, and make the eyes follow the mouse, we are on the right track!*/
+window.addEventListener("scroll", () => {
+    let scrollPercentage = window.scrollY;
+    if (scrollPercentage === scrollHeight * 0.35) {
+        console.log("You scrolled 35% of the page");
+        makeContainersVisible();
+        containerOpacity += 0.01;
+    } else if (scrollPercentage < scrollHeight * 0.35) {
+        console.log("You are above 35%");
+        makeContainersVisible();
+    }
+})
+
+// Today I dont have much motivation, but you are going great, you just have to make the boxes appear only after a ccertain  point and either not make it turn on again, or just dont care how much it turns on but just use the first one

@@ -6,27 +6,22 @@ const eyeContainers = document.querySelectorAll('.container');
 const eyeShape = document.querySelectorAll('.eye');
 const pupils = document.querySelectorAll('.pupil');
 
-// Variables
-let containerOpacity = 0
+// Change Opacity of elements based on the scroll
+let elementOpacity = 0;
+function getOpacityOnScroll() {
+    elementOpacity = (window.scrollY / 11359).toFixed(2);
+    return elementOpacity;
+}
 
-
-// Tweak containers opacity
-function makeContainersVisible() {
+function changeOpacity() {
     eyeContainers.forEach((element) => {
-        element.style.opacity = containerOpacity;
+        element.style.opacity = elementOpacity;
     });
 }
 
-window.addEventListener("scroll", () => {
-    let scrollPercentage = window.scrollY;
-    if (scrollPercentage === scrollHeight * 0.35) {
-        console.log("You scrolled 35% of the page");
-        makeContainersVisible();
-        containerOpacity += 0.01;
-    } else if (scrollPercentage < scrollHeight * 0.35) {
-        console.log("You are above 35%");
-        makeContainersVisible();
-    }
-})
+function setNewOpacity() {
+    getOpacityOnScroll()
+    changeOpacity()
+}
 
-// Today I dont have much motivation, but you are going great, you just have to make the boxes appear only after a ccertain  point and either not make it turn on again, or just dont care how much it turns on but just use the first one
+window.addEventListener("scroll", setNewOpacity);
